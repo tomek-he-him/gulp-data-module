@@ -1,0 +1,16 @@
+{ "name": "gulp-data-module"
+, "version": "0.0.0"
+, "description": "Wrap any JS value into an ES6 module. The gulp way."
+, "license": "MIT"
+
+, "contributors":
+  [ { "name": "Tomek Wiszniewski"
+    , "email": "t.wiszniewski@gmail.com"
+    }
+  ]
+
+, "repository":
+  { "type": "git"
+  , "url": "https://github.com/tomekwi/gulp-data-module.git"
+  }
+}
