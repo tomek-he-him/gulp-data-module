@@ -15,7 +15,7 @@
   }
 
 , "dependencies":
-  { "data-module": "~0.0.3"
+  { "data-module": "~0.0.4"
   , "gulp-util": "~3.0.1"
   , "through2": "~0.6.3"
   }
