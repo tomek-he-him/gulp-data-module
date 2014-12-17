@@ -1,6 +1,6 @@
 var _dataModule = require('data-module');
 var gutil = require('gulp-util');
-var through2 = require('through2');
+var stream = require('through2').obj;
 
 var DataModuleError = gutil.PluginError.bind(null, 'gulp-data-module');
 
@@ -14,7 +14,7 @@ var dataModule = function dataModule (options) { 'use strict';
         dataModuleOptions.formatting = options.formatting;
         }
 
-    return through2.obj(function dataModuleStream (file, encoding, done) {
+    return stream(function dataModuleStream (file, encoding, done) {
         var source;
 
         if (file.isBuffer()) {
@@ -24,7 +24,7 @@ var dataModule = function dataModule (options) { 'use strict';
                 ( source
                 , dataModuleOptions
                 ).toBuffer();
-            file.path = file.path.replace(/(?:\.[^\/\\\.]$|$)/, '.js');
+            file.path = gutil.replaceExtension('.js');
             }
 
         else if (file.isStream()) return done(new DataModuleError
