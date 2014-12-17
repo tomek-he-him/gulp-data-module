@@ -1,4 +1,4 @@
-var originalDataModule = require('data-module');
+var _dataModule = require('data-module');
 var gutil = require('gulp-util');
 var through2 = require('through2');
 
@@ -20,7 +20,7 @@ var dataModule = function dataModule (options) { 'use strict';
         if (file.isBuffer()) {
             source = parsing(file.contents.toString());
 
-            file.contents = originalDataModule
+            file.contents = _dataModule
                 ( source
                 , dataModuleOptions
                 ).toBuffer();
@@ -37,8 +37,7 @@ var dataModule = function dataModule (options) { 'use strict';
     };
 
 
-dataModule.formatting =
-    { diffy: dataModule.diffy
-    };
+dataModule.formatting = _dataModule.formatting;
+
 
 module.exports = dataModule;
