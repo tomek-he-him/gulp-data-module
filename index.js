@@ -1,12 +1,13 @@
-var dataModule = require('data-module');
+var originalDataModule = require('data-module');
 var gutil = require('gulp-util');
 var through2 = require('through2');
 
 var DataModuleError = gutil.PluginError.bind(null, 'gulp-data-module');
 
 
-var gulpDataModule = function gulpDataModule (options) { 'use strict';
+var dataModule = function dataModule (options) { 'use strict';
     if (!options) options = {};
+    var parsing = options.parsing || JSON.parse;
 
     var dataModuleOptions = {};
     if (typeof options.formatting == 'function') {
@@ -14,9 +15,13 @@ var gulpDataModule = function gulpDataModule (options) { 'use strict';
         }
 
     return through2.obj(function dataModuleStream (file, encoding, done) {
+        var source;
+
         if (file.isBuffer()) {
-            file.contents = dataModule
-                ( file.contents.toString()
+            source = parsing(file.contents.toString());
+
+            file.contents = originalDataModule
+                ( source
                 , dataModuleOptions
                 ).toBuffer();
             file.path = file.path.replace(/(?:\.[^\/\\\.]$|$)/, '.js');
@@ -32,9 +37,8 @@ var gulpDataModule = function gulpDataModule (options) { 'use strict';
     };
 
 
-gulpDataModule.formatting =
+dataModule.formatting =
     { diffy: dataModule.diffy
     };
 
-
-module.exports = gulpDataModule;
+module.exports = dataModule;
