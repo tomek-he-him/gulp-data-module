@@ -1,5 +1,5 @@
 { "name": "gulp-data-module"
-, "version": "0.0.2"
+, "version": "0.0.3"
 , "description": "Wrap any JS value into an ES6 module. The gulp way."
 , "license": "MIT"
 
