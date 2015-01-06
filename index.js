@@ -24,7 +24,7 @@ var dataModule = function dataModule (options) { 'use strict';
                 ( source
                 , dataModuleOptions
                 ).toBuffer();
-            file.path = gutil.replaceExtension('.js');
+            file.path = gutil.replaceExtension(file.path, '.js');
             }
 
         else if (file.isStream()) return done(new DataModuleError
